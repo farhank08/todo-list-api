@@ -1,0 +1,40 @@
+* {
+	box-sizing: border-box;
+}
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+	line-height: 1.5;
+}
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+a {
+	color: #2563eb;
+	text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0 0 0.5rem 0;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+button {
+	cursor: pointer;
+	border: 1px solid transparent;
+	padding: 0.35rem 0.6rem;
+	border-radius: 6px;
+}
