@@ -60,8 +60,8 @@ app.use(express.static(publicDir));
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 
 // Set API routers
-app.use('/api', todoRouter);
 app.use('/api', userRouter);
+app.use('/api', todoRouter);
 
 // Set views router
 app.use('/', viewRouter);

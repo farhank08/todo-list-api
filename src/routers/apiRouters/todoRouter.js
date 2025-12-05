@@ -10,7 +10,7 @@ const router = Router();
 router.get('/todos/:id', authApi, TodoController.findTodoById);
 
 // Get all todo items with pagination
-// e.g. /todos?page=1&limit=10
+// url e.g. /todos?page=1&limit=10
 router.get('/todos', authApi, TodoController.getTodos);
 
 // Create new todo item

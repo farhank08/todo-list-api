@@ -28,7 +28,7 @@ export const register = async (req, res) => {
 			message: 'User registration successful',
 		});
 	} catch (error) {
-		// Handle database error
+		// Handle database query error
 		console.log(`User registration failed: ${error.message}`);
 		return res.status(500).json({
 			success: false,
@@ -68,13 +68,14 @@ export const login = async (req, res) => {
 		req.session.userId = user._id;
 
 		// Respond with success
+		console.log(`User id ${user._id} login successful`);
 		return res.status(200).json({
 			success: true,
 			message: 'User login successful',
 		});
 	} catch (error) {
-		// Handle database error
-		console.error(`User login failed: ${error}`);
+		// Handle database query error
+		console.error(`User id ${user._id} login failed: ${error}`);
 		return res.status(500).json({
 			success: false,
 			message: 'Internal server error',
@@ -84,11 +85,14 @@ export const login = async (req, res) => {
 
 // Log out user
 export const logout = async (req, res) => {
+	// Get user id from session
+	const userId = req.session.userId;
+
 	// Clear session on the server
 	req.session.destroy((error) => {
 		if (error) {
 			// Handle server error
-			console.error(`User logout error: ${error.message}`);
+			console.error(`User id ${userId} logout error: ${error.message}`);
 			return res.status(500).json({
 				success: false,
 				message: 'Internal server error',
@@ -99,6 +103,7 @@ export const logout = async (req, res) => {
 		req.clearCookie('session');
 
 		// Respond with success
+		console.log(`User id ${userId} logout successful`);
 		return res.status(200).json({
 			success: true,
 			message: 'User logout successful',
