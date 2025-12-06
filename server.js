@@ -36,7 +36,7 @@ const port = process.env.PORT || 5000;
 // Initialize express server
 const app = express();
 
-// Initialize session storage
+// Session storage middleware
 app.use(
 	session({
 		name: 'session',
