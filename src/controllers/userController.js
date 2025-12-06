@@ -1,9 +1,10 @@
 import bcrypt from 'bcrypt';
 
-import userModel from '../models/userModel.js';
+import UserModel from '../models/userModel.js';
 
 // Register new user
 export const register = async (req, res) => {
+	// Spread request body
 	const { name, email, password } = req.body;
 
 	// Encrypt password
@@ -11,8 +12,20 @@ export const register = async (req, res) => {
 	const hashedPassword = await bcrypt.hash(password, salt);
 
 	try {
+		// Check database for already registered user email
+		const userExists = await UserModel.findOne({ email });
+
+		// Handle user already registered error
+		if (userExists) {
+			console.log(`User registration failed: User with email ${email} already registered`);
+			return res.status(400).json({
+				success: false,
+				message: 'User already registered',
+			});
+		}
+
 		// Create new user in database
-		const newUser = await userModel.create({
+		const newUser = await UserModel.create({
 			name,
 			email,
 			password: hashedPassword,
@@ -29,7 +42,7 @@ export const register = async (req, res) => {
 		});
 	} catch (error) {
 		// Handle database query error
-		console.log(`User registration failed: ${error.message}`);
+		console.log(`Database query error: ${error.message}`);
 		return res.status(500).json({
 			success: false,
 			message: `Internal server error`,
@@ -43,7 +56,7 @@ export const login = async (req, res) => {
 
 	try {
 		// Find user from database
-		const user = await userModel.findOne({ email: email });
+		const user = await UserModel.findOne({ email: email });
 
 		if (!user) {
 			// Handle incorrect or missing email
