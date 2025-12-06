@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>Document</title>
+		<title>Todo List API</title>
 		<!-- Styles and scripts -->
 		<link
 			rel="stylesheet"
@@ -22,17 +22,84 @@
 	</head>
 	<body>
 		<header>
-			<h1 id="logo"><a href="/">Todo List API</a></h1>
-			<h4>A client-side demo</h4>
+			<div class="container">
+				<h1 id="logo"><a href="/">Todo List API</a></h1>
+				<h4>A client-side demonstration</h4>
+			</div>
 		</header>
-		<nav>
-			<h1>Login Nav</h1>
-		</nav>
 		<main>
-			<h1>Login Main</h1>
+			<div class="container">
+				<!-- TODO: Forms to login and register -->
+				<div class="container forms-row">
+					<div class="container form">
+						<h4>Already registerd? Log in!</h4>
+						<form id="login-form">
+							<label for="email-input">Email</label>
+							<input
+								name="email"
+								type="email"
+								placeholder="Dummy email"
+								required
+							/>
+							<label for="password-input">Password</label>
+							<input
+								name="password"
+								type="password"
+								placeholder="Password"
+								required
+							/>
+							<button
+								id="login-button"
+								type="submit"
+							>
+								Login
+							</button>
+						</form>
+					</div>
+					<div class="container form">
+						<h4>First time? Register to use API!</h4>
+						<form id="register-form">
+							<label for="username-input">Username</label>
+							<input
+								name="name"
+								type="text"
+								placeholder="Username"
+								required
+							/>
+							<label for="email-input">Email</label>
+							<input
+								name="email"
+								type="email"
+								placeholder="Dummy email"
+								required
+							/>
+							<label for="password-input">Password</label>
+							<input
+								name="password"
+								type="password"
+								placeholder="Password"
+								required
+							/>
+							<button
+								id="register-button"
+								type="submit"
+							>
+								Register
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
 		</main>
 		<footer>
-			<h1>Login Footer</h1>
+			<div class="container">
+				<small>
+					This application is for demonstration purposes only. Data provided here may be incomplete
+					or inaccurate - use at your own risk.
+					<br />
+					© 2025 DevRx. All Rights Reserved.
+				</small>
+			</div>
 		</footer>
 	</body>
 </html>

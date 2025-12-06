@@ -21,12 +21,15 @@ router.get('/', authViews, (req, res, next) => {
 
 // Serve login page
 router.get('/login', (req, res, next) => {
+	// Reroute to home page if in active session
+	if (req.session.userId) {
+		return res.redirect('/');
+	}
+
 	return res.sendFile(path.join(viewsDir, 'login.html'), (error) => {
 		if (error) return next();
 	});
 });
-
-// TODO: Todo view routes
 
 // Server all other html pages
 router.use(authViews, (req, res, next) => {

@@ -74,8 +74,8 @@ export const getTodos = async (req, res, next) => {
 		return res.status(200).json({
 			success: true,
 			payload: todos,
-			message: `Todos found ${
-				page && limit ? `for page ${page} and limited to ${limit} todos` : ''
+			message: `Todos found${
+				page && limit ? ` for page ${page} and limited to ${limit} todos` : ''
 			}`,
 		});
 	} catch (error) {
@@ -114,7 +114,7 @@ export const createTodo = async (req, res) => {
 	} catch (error) {
 		// Handle database query error
 		console.error(`Database query error: ${error.message} for user id ${id}`);
-		return res.status.json({
+		return res.status(500).json({
 			success: false,
 			message: 'Internal server error',
 		});
@@ -132,7 +132,7 @@ export const updateTodo = async (req, res) => {
 	// Handle missing request body error
 	if (!req.body) {
 		console.error(`Missing request body to update todo id ${todoId} for User id ${userId}`);
-		return res.status.json({
+		return res.status(400).json({
 			success: false,
 			message: 'Missing request body',
 		});
@@ -144,7 +144,7 @@ export const updateTodo = async (req, res) => {
 	// Handle missing request body data error
 	if (!title && !description) {
 		console.error(`Missing request body to update todo id ${todoId} for User id ${userId}`);
-		return res.status.json({
+		return res.status(400).json({
 			success: false,
 			message: 'Missing request body',
 		});
@@ -185,7 +185,7 @@ export const updateTodo = async (req, res) => {
 	} catch (error) {
 		// Handle database query error
 		console.error(`Database query error: ${error.message} for User id ${id}`);
-		return res.status.json({
+		return res.status(500).json({
 			success: false,
 			message: 'Internal server error',
 		});
@@ -215,7 +215,7 @@ export const deleteTodo = async (req, res) => {
 
 		// Respond with success
 		console.log(`Deleted Todo id ${todoId} for User id ${userId}`);
-		return res.status.json({
+		return res.status(500).json({
 			success: true,
 			payload: newTodo,
 			message: 'Deleted Todo item successfully',
@@ -223,7 +223,7 @@ export const deleteTodo = async (req, res) => {
 	} catch (error) {
 		// Handle database query error
 		console.error(`Database query error: ${error.message} for User id ${id}`);
-		return res.status.json({
+		return res.status(500).json({
 			success: false,
 			message: 'Internal server error',
 		});

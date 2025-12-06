@@ -60,7 +60,7 @@ export const login = async (req, res) => {
 
 		if (!user) {
 			// Handle incorrect or missing email
-			console.error(`User with email:${email} not found`);
+			console.error(`User with email ${email} not found`);
 			return res.status(400).json({
 				success: false,
 				message: `User not found`,
@@ -73,7 +73,7 @@ export const login = async (req, res) => {
 			console.error(`Invalid login attempt by id ${user._id}`);
 			return res.status(400).json({
 				success: false,
-				message: `Invalid password`,
+				message: `Invalid login attempt`,
 			});
 		}
 
