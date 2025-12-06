@@ -1,4 +1,4 @@
-import * as TodoModel from '../models/todoModel.js';
+import TodoModel from '../models/todoModel.js';
 
 // Find todo item by id
 export const findTodoById = async (req, res) => {
