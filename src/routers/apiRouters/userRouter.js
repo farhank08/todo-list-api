@@ -8,8 +8,8 @@ const router = Router();
 // POST login user
 router.post('/login', UserController.login);
 
-// POST login user
-router.get('/logout', UserController.logout);
+// POST logout user
+router.post('/logout', UserController.logout);
 
 // POST register user
 router.post('/register', UserController.register);

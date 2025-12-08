@@ -78,7 +78,7 @@ input:focus {
 
 button {
 	display: inline-block;
-	padding: 0.6rem 1.2rem;
+	padding: 0.5rem 1rem;
 	font-size: 1rem;
 	line-height: 1.2;
 	font-weight: 500;
@@ -128,14 +128,16 @@ header > .container {
 }
 
 nav > .container {
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 1rem;
 }
 
 main > .container {
 	margin-top: 4rem;
 	margin-bottom: 4rem;
-}
-
-footer > .container {
 }
 
 .container.forms-row {

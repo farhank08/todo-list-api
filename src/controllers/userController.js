@@ -113,7 +113,7 @@ export const logout = async (req, res) => {
 		}
 
 		// Clear cookie on the client
-		req.clearCookie('session');
+		res.clearCookie('session');
 
 		// Respond with success
 		console.log(`User id ${userId} logout successful`);
