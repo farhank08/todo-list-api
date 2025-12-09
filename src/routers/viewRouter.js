@@ -31,8 +31,20 @@ router.get('/login', (req, res, next) => {
 	});
 });
 
+// Serve todo edit page
+router.get('/todo/:id', (req, res, next) => {
+	return res.sendFile(path.join(viewsDir, 'todo.html'), (error) => {
+		if (error) return next();
+	});
+});
+
 // Server all other html pages
 router.use(authViews, (req, res, next) => {
+	/* Handle for:
+			- not GET method
+			- API call
+			- Static file request
+	*/
 	if (req.method !== 'GET' || req.path.startsWith('/api') || path.extname(req.path)) return next();
 
 	return res.sendFile(path.join(viewsDir, `${req.path}.html`), (error) => {

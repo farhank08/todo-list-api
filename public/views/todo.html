@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Todo List API</title>
+		<!-- Styles and scripts -->
+		<link
+			rel="stylesheet"
+			href="../styles/globals.css"
+		/>
+		<script
+			src="../scripts/todo.js"
+			type="module"
+			defer
+		></script>
+		<!-- CDN Resources -->
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<h1 id="logo"><a href="/">Todo List API</a></h1>
+				<h4>A client-side demo</h4>
+			</div>
+		</header>
+		<nav>
+			<div class="container">
+				<button
+					id="back-button"
+					class="grey"
+				>
+					Back
+				</button>
+				<button id="logout-button">Logout</button>
+			</div>
+		</nav>
+		<main>
+			<div class="container full-width">
+				<form id="todo-form">
+					<div
+						id="id-container"
+						class="container full-width"
+					></div>
+					<div class="container input full-width">
+						<label for="title-input">Title</label>
+						<input
+							name="title"
+							id="title-input"
+							class="full-width"
+							type="text"
+							placeholder="Title"
+							required
+						/>
+					</div>
+					<div class="container input full-width">
+						<label for="description-textarea">Description</label>
+						<textarea
+							name="description"
+							id="description-textarea"
+							class="full-width"
+							placeholder="Task description"
+							rows="8"
+							required
+						></textarea>
+					</div>
+					<div
+						id="form-buttons"
+						class="container row input"
+					>
+						<button type="submit">Save</button>
+						<button
+							id="clear-button"
+							type="button"
+							class="green"
+						>
+							Clear
+						</button>
+					</div>
+				</form>
+			</div>
+		</main>
+		<footer>
+			<div class="container">
+				<small>
+					This application is for demonstration purposes only. Data provided here may be incomplete
+					or inaccurate - use at your own risk.
+					<br />
+					© 2025 DevRx. All Rights Reserved.
+				</small>
+			</div>
+		</footer>
+	</body>
+</html>

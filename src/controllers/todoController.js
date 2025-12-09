@@ -6,7 +6,7 @@ export const findTodoById = async (req, res) => {
 	const userId = req.session.userId;
 
 	// Get todo id from url
-	const todoId = req.path.split('/')[3]; // ["", "api", "todos", "123"]
+	const todoId = req.params.id;
 
 	try {
 		// Get todo with id from database
@@ -14,7 +14,7 @@ export const findTodoById = async (req, res) => {
 
 		// Handle todo not found error
 		if (!todo) {
-			console.error(`Todo with id ${todoId} not found for user id ${id}`);
+			console.error(`Todo id ${todoId} not found for User id ${userId}`);
 			return res.status(404).json({
 				success: false,
 				message: 'Todo not found',
@@ -22,7 +22,7 @@ export const findTodoById = async (req, res) => {
 		}
 
 		// Respond with success
-		console.log(`Todo with ${id} retrieved for user id ${id}`);
+		console.log(`Todo id ${todoId} retrieved for User id ${userId}`);
 		return res.status(200).json({
 			success: true,
 			payload: todo,
@@ -30,7 +30,7 @@ export const findTodoById = async (req, res) => {
 		});
 	} catch (error) {
 		// Handle database query error
-		console.error(`Database query error: ${error.message} for user id ${id}`);
+		console.error(`Database query error: ${error.message} for User id ${userId}`);
 		return res.status(500).json({
 			success: false,
 			message: 'Internal server error',
@@ -70,7 +70,7 @@ export const getTodos = async (req, res, next) => {
 		}
 
 		// Respond with success
-		console.log(`Todos retrieved ${page && limit ? 'with pagination ' : ''} for user id ${userId}`);
+		console.log(`Todos retrieved${page && limit ? ' with pagination' : ''} for user id ${userId}`);
 		return res.status(200).json({
 			success: true,
 			payload: todos,
@@ -80,7 +80,7 @@ export const getTodos = async (req, res, next) => {
 		});
 	} catch (error) {
 		// Handle database query error
-		console.error(`Database query error: ${error.message} for user id ${id}`);
+		console.error(`Database query error: ${error.message} for User id ${userId}`);
 		return res.status(500).json({
 			success: false,
 			message: 'Internal server error',
@@ -105,15 +105,15 @@ export const createTodo = async (req, res) => {
 		});
 
 		// Respond with success
-		console.log(`Created new Todo id ${newTodo.id} for user id ${userId}`);
-		return res.status.json({
+		console.log(`Created new Todo id ${newTodo.id} for User id ${userId}`);
+		return res.status(201).json({
 			success: true,
 			payload: newTodo,
 			message: 'Created new Todo item successfully',
 		});
 	} catch (error) {
 		// Handle database query error
-		console.error(`Database query error: ${error.message} for user id ${id}`);
+		console.error(`Database query error: ${error.message} for User id ${userId}`);
 		return res.status(500).json({
 			success: false,
 			message: 'Internal server error',
@@ -127,11 +127,11 @@ export const updateTodo = async (req, res) => {
 	const userId = req.session.userId;
 
 	// Get todo id from url
-	const todoId = req.path.split('/')[3]; // ["", "api", "todos", "123"]
+	const todoId = req.params.id;
 
 	// Handle missing request body error
 	if (!req.body) {
-		console.error(`Missing request body to update todo id ${todoId} for User id ${userId}`);
+		console.error(`Missing request body to update Todo id ${todoId} for User id ${userId}`);
 		return res.status(400).json({
 			success: false,
 			message: 'Missing request body',
@@ -143,7 +143,7 @@ export const updateTodo = async (req, res) => {
 
 	// Handle missing request body data error
 	if (!title && !description) {
-		console.error(`Missing request body to update todo id ${todoId} for User id ${userId}`);
+		console.error(`Missing request body to update Todo id ${todoId} for User id ${userId}`);
 		return res.status(400).json({
 			success: false,
 			message: 'Missing request body',
@@ -168,7 +168,7 @@ export const updateTodo = async (req, res) => {
 
 		// Handle todo not found error
 		if (!updatedTodo) {
-			console.error(`Todo with id ${todoId} not found for User id ${id}`);
+			console.error(`Todo id ${todoId} not found for User id ${userId}`);
 			return res.status(404).json({
 				success: false,
 				message: 'Todo not found',
@@ -177,14 +177,14 @@ export const updateTodo = async (req, res) => {
 
 		// Respond with success
 		console.log(`Updated Todo id ${todoId} for User id ${userId}`);
-		return res.status.json({
+		return res.status(200).json({
 			success: true,
 			payload: updatedTodo,
 			message: 'Updated todo item successfully',
 		});
 	} catch (error) {
 		// Handle database query error
-		console.error(`Database query error: ${error.message} for User id ${id}`);
+		console.error(`Database query error: ${error.message} for User id ${userId}`);
 		return res.status(500).json({
 			success: false,
 			message: 'Internal server error',
@@ -198,7 +198,7 @@ export const deleteTodo = async (req, res) => {
 	const userId = req.session.userId;
 
 	// Get todo id from url
-	const todoId = req.path.split('/')[3]; // ["", "api", "todos", "123"]
+	const todoId = req.params.id;
 
 	try {
 		// Create new todo on database
@@ -206,7 +206,7 @@ export const deleteTodo = async (req, res) => {
 
 		// Handle todo not found error
 		if (!newTodo.deletedCount) {
-			console.error(`Todo with id ${todoId} not found for User id ${id}`);
+			console.error(`Todo id ${todoId} not found for User id ${userId}`);
 			return res.status(404).json({
 				success: false,
 				message: 'Todo not found',
@@ -222,7 +222,7 @@ export const deleteTodo = async (req, res) => {
 		});
 	} catch (error) {
 		// Handle database query error
-		console.error(`Database query error: ${error.message} for User id ${id}`);
+		console.error(`Database query error: ${error.message} for User id ${userId}`);
 		return res.status(500).json({
 			success: false,
 			message: 'Internal server error',

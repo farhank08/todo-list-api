@@ -17,7 +17,7 @@ router.get('/todos', authApi, TodoController.getTodos);
 router.post('/todos', authApi, TodoController.createTodo);
 
 // Update existing todo item
-router.post('/todos/:id', authApi, TodoController.updateTodo);
+router.patch('/todos/:id', authApi, TodoController.updateTodo);
 
 // Delete existing todo item
 router.delete('/todos/:id', authApi, TodoController.deleteTodo);
