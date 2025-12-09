@@ -17,6 +17,9 @@ body {
 }
 body > * {
 	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 body > main {
 	flex: 1;
@@ -35,6 +38,13 @@ img {
 a {
 	color: #333;
 	text-decoration: none;
+}
+
+ul,
+li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 h1,
@@ -56,18 +66,21 @@ label {
 	color: #333;
 }
 
+input,
+textarea,
+select,
+button {
+	font: inherit;
+}
+
 input {
-	display: block;
-	width: 100%;
 	padding: 0.6rem 0.8rem;
 	font-size: 1rem;
-	line-height: 1.4;
+	line-height: 1;
 	border: 1px solid #aaa;
 	border-radius: 0.25rem;
 	background-color: #fff;
 	color: #333;
-	box-sizing: border-box;
-	margin-bottom: 1rem;
 	transition: border-color 0.2s ease;
 }
 input:focus {
@@ -75,9 +88,29 @@ input:focus {
 	outline: none;
 	box-shadow: 0 0 2px rgba(91, 157, 249, 0.4);
 }
+input.pagination {
+	width: 3rem;
+}
+
+textarea {
+	padding: 0.6rem 0.8rem;
+	max-width: 100%;
+	font-size: 1rem;
+	line-height: 1.4;
+	border: 1px solid #aaa;
+	border-radius: 0.25rem;
+	background-color: #fff;
+	color: #333;
+	transition: border-color 0.2s ease;
+}
+textarea:focus {
+	border-color: #5b9df9;
+	outline: none;
+	box-shadow: 0 0 2px rgba(91, 157, 249, 0.4);
+}
 
 button {
-	display: inline-block;
+	margin: 0.5rem 0rem;
 	padding: 0.5rem 1rem;
 	font-size: 1rem;
 	line-height: 1.2;
@@ -95,12 +128,40 @@ button:hover {
 button:active {
 	transform: translateY(1px);
 }
+button.green {
+	background-color: limegreen;
+}
+button.green:hover {
+	background-color: #02f930;
+}
+button.red {
+	background-color: rgb(187, 15, 15);
+}
+button.red:hover {
+	background-color: #f74545;
+}
+button.grey {
+	background-color: rgb(150, 150, 150);
+}
+button.grey:hover {
+	background-color: #c4c4c4;
+}
 
 form {
 	border: #aaa 1px solid;
 	border-radius: 8px;
-	padding: 1rem;
+	padding: 0.5rem;
 	box-shadow: 0 0 2px #ddd;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+form#search-form {
+	flex-direction: row;
+	justify-content: center;
+}
+form#todo-form {
+	width: 50%;
 }
 
 #logo {
@@ -114,12 +175,37 @@ form {
 	color: #444;
 }
 
+#id-label {
+	width: 100%;
+	background-color: #aaa;
+	padding: 0.5rem;
+	border-radius: 0.25rem;
+	text-align: center;
+}
+
+#todo-list {
+	margin-top: 3rem;
+}
+
+.todo-item {
+	margin-bottom: 2rem;
+	padding: 1rem;
+	border: #aaa 1px solid;
+	border-radius: 0.25rem;
+	box-shadow: 0 0 2px #ddd;
+	cursor: pointer;
+	transition: box-shadow 0.2s ease, transform 0.1s ease;
+}
+.todo-item:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12 rgba(0, 0, 0, 0.12);
+}
+
 .container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	max-width: 1200px;
-	margin-inline: auto;
 	padding: 0.5rem;
 }
 
@@ -140,15 +226,52 @@ main > .container {
 	margin-bottom: 4rem;
 }
 
-.container.forms-row {
+.container.row {
 	display: flex;
 	flex-direction: row;
-	justify-content: stretch;
+	justify-content: center;
+	margin: 0 1rem;
+}
+.container.row.gap-small {
+	gap: 1rem;
+}
+.container.row.gap-medium {
 	gap: 4rem;
 }
 
 .container.form {
 	display: flex;
 	flex-direction: column;
+}
+
+.container.input {
+	align-items: flex-start;
+}
+.container.input.row {
+	flex-direction: row;
 	align-items: center;
+	gap: 1rem;
+}
+
+.quarter-width {
+	width: 25%;
+}
+.half-width {
+	width: 50%;
+}
+.triquarter-width {
+	width: 75%;
+}
+.full-width {
+	width: 100%;
+}
+
+.padding-small {
+	padding: 0.25rem;
+}
+.padding-medium {
+	padding: 0.5rem;
+}
+.padding-large {
+	padding: 1rem;
 }
