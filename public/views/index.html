@@ -29,12 +29,49 @@
 		</header>
 		<nav>
 			<div class="container">
+				<button
+					id="create-button"
+					class="green"
+				>
+					Create
+				</button>
 				<button id="logout-button">Logout</button>
 			</div>
 		</nav>
 		<main>
 			<div class="container">
-				<h1>Index Main</h1>
+				<form id="search-form">
+					<div class="container input row">
+						<label for="page-input">Page</label>
+						<input
+							name="page"
+							id="page-input"
+							class="pagination"
+							type="text"
+							placeholder="1"
+							maxlength="2"
+						/>
+
+						<label for="limit-input">Limit</label>
+						<input
+							name="limit"
+							id="limit-input"
+							class="pagination"
+							type="text"
+							placeholder="10"
+							maxlength="2"
+						/>
+					</div>
+					<div class="container input row">
+						<button type="submit">Search</button>
+					</div>
+				</form>
+				<small class="padding-medium">To get all todos, search without pagination</small>
+
+				<ul
+					id="todo-list"
+					class="container full-width"
+				></ul>
 			</div>
 		</main>
 		<footer>
