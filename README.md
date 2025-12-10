@@ -2,6 +2,8 @@
 
 A clean and modular **Node.js + Express** backend application featuring **session-based authentication**, **MongoDB persistence**, and **protected CRUD operations** for managing todos. Built to demonstrate backend engineering fundamentals including authentication, data modeling, routing structure, and API design.
 
+Project from https://roadmap.sh/projects/todo-list-api
+
 ---
 
 ## 🚀 Key Features
@@ -78,4 +80,4 @@ http://localhost:5000/api
 
 ## 📄 Summary
 
-This project demonstrates secure authentication, data validation, routing architecture, and REST API best practices. It is designed to be clean, readable, and aligned with professional backend standards. Project from https://roadmap.sh/projects/todo-list-api
+This project demonstrates secure authentication, data validation, routing architecture, and REST API best practices. It is designed to be clean, readable, and aligned with professional backend standards.
