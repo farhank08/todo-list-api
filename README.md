@@ -1,83 +1,102 @@
 # Todo List API
 
-A clean and modular **Node.js + Express** backend application featuring **session-based authentication**, **MongoDB persistence**, and **protected CRUD operations** for managing todos. Built to demonstrate backend engineering fundamentals including authentication, data modeling, routing structure, and API design.
+A Node.js **Todo List API** with user authentication that allows users to register, log in, and manage personal todo items. The application uses **Express**, **MongoDB (Mongoose)**, and serves both **JSON API endpoints** and **HTML views** for interacting with todos through the browser.
 
 Project from https://roadmap.sh/projects/todo-list-api
 
----
+## Prerequisites
 
-## 🚀 Key Features
+- Node.js runtime
+- Express framework
+- MongoDB (local instance or managed service)
 
-- User registration, login, and logout
-- Secure session-based authentication (no JWT)
-- Protected CRUD API for todo items
-- Pagination support for efficient data retrieval
-- MongoDB + Mongoose data modeling
-- Clean separation of controllers, routers, and services
+## Installation
 
----
+1. **Clone the repository**
 
-## ⚙️ Quick Start
-
+```bash
+git clone <repository-url>
+cd todo-list-api
 ```
+
+2. **Install dependencies**
+
+```bash
 npm install
 ```
 
-Create a `.env` file:
+## Configuration
 
+### Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+PORT=3000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
 ```
-MONGODB_URI=your_uri
-SESSION_SECRET_KEY=your_secret
-PORT=5000
-```
+
+- `PORT` – Port the server runs on
+- `MONGODB_URI` – MongoDB connection string
+- `JWT_SECRET` – Secret used for signing authentication tokens
+
+## Running the Application
 
 Start the server:
 
-```
+```bash
 npm start
 ```
 
-Demo URL:
-http://localhost:5000/
+The application will be available at:
 
-API Base URL:
-http://localhost:5000/api
+```
+http://localhost:3000
+```
 
----
+## Authentication
 
-## 📘 API Overview
+- Users can register and log in using the authentication API
+- Passwords are hashed using **bcrypt**
+- Authentication state is enforced using middleware
+- Protected routes require a valid authenticated session
 
-### User Authentication (Public)
+## API Endpoints
 
-| Method | Endpoint      | Description   |
-| ------ | ------------- | ------------- |
-| POST   | /api/register | Register user |
-| POST   | /api/login    | Login user    |
-| POST   | /api/logout   | Logout user   |
+### Users
 
-### Todos (Authenticated)
+| Method | Endpoint              | Description         |
+| ------ | --------------------- | ------------------- |
+| POST   | `/api/users/register` | Register a new user |
+| POST   | `/api/users/login`    | Authenticate a user |
 
-| Method | Endpoint       | Description    |
-| ------ | -------------- | -------------- |
-| GET    | /api/todos     | List todos     |
-| GET    | /api/todos/:id | Get todo by ID |
-| POST   | /api/todos     | Create todo    |
-| PATCH  | /api/todos/:id | Update todo    |
-| DELETE | /api/todos/:id | Delete todo    |
+### Todos
 
----
+All todo routes require authentication.
 
-## 🧱 Tech Stack
+| Method | Endpoint         | Description                              |
+| ------ | ---------------- | ---------------------------------------- |
+| GET    | `/api/todos`     | Get all todos for the authenticated user |
+| POST   | `/api/todos`     | Create a new todo                        |
+| PUT    | `/api/todos/:id` | Update a todo                            |
+| DELETE | `/api/todos/:id` | Delete a todo                            |
 
-- Node.js
-- Express
-- MongoDB + Mongoose
-- express-session
-- bcrypt
-- dotenv
+## Views
 
----
+The server also serves HTML pages for interacting with the application:
 
-## 📄 Summary
+- Login page
+- Todo list page
 
-This project demonstrates secure authentication, data validation, routing architecture, and REST API best practices. It is designed to be clean, readable, and aligned with professional backend standards.
+These views interact with the API via client-side JavaScript.
+
+## Notes
+
+- MongoDB connection is initialized on server startup
+- Authentication and authorization logic is centralized in middleware
+- Designed as a simple full-stack example combining API and views
+
+## License
+
+This project is licensed under the ISC License.
